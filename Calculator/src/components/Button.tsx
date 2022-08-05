@@ -6,14 +6,39 @@ interface ButtonProps {
   title: string
   backgroundColor: string
   textColor: string
-  onPress: (title: string) => void
+  onPress: () => void
+  width?: number
 }
 
-const Button = ({title, backgroundColor, textColor, onPress}: ButtonProps) => {
+const Button = ({
+  title,
+  backgroundColor,
+  textColor,
+  onPress,
+  width = 65,
+}: ButtonProps) => {
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: colors.red,
+      height: 65,
+      width: width,
+      marginHorizontal: 12,
+      marginVertical: 12,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 15,
+    },
+    text: {
+      fontSize: 30,
+      fontWeight: '400',
+      color: colors.darkGray,
+    },
+  })
+
   return (
     <TouchableOpacity
       onPress={() => {
-        onPress(title)
+        onPress()
       }}
       style={[styles.container, {backgroundColor: backgroundColor}]}>
       <Text style={[styles.text, {color: textColor}]}>{title}</Text>
@@ -22,21 +47,3 @@ const Button = ({title, backgroundColor, textColor, onPress}: ButtonProps) => {
 }
 
 export default Button
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.red,
-    height: 65,
-    width: 65,
-    marginHorizontal: 12,
-    marginVertical: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 15,
-  },
-  text: {
-    fontSize: 30,
-    fontWeight: '400',
-    color: colors.darkGray,
-  },
-})
